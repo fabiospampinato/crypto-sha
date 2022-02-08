@@ -1,32 +1,9 @@
 
+/* IMPORT */
+
+import toHex from 'uint8-to-hex';
+
 /* HELPERS */
-
-const toHex = (() => { // The fastest way to convert a buffer to hex
-
-  const alphabet = '0123456789abcdef';
-  const lookup = new Array ( 256 );
-
-  for  ( let i = 0; i < 256; i++ ) {
-
-    lookup[i] = `${alphabet[(i >>> 4) & 0xF]}${alphabet[i & 0xF]}`;
-
-  }
-
-  return ( buffer: Uint8Array ): string => {
-
-    let hex = '';
-
-    for ( let i = 0, l = buffer.length; i < l; i++ ) {
-
-      hex += lookup[buffer[i]];
-
-    }
-
-    return hex;
-
-  };
-
-})();
 
 const makeHash = ( algorithm: 'SHA-1' | 'SHA-224' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
 
