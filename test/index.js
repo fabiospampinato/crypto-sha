@@ -2,7 +2,7 @@
 /* IMPORT */
 
 const {describe} = require ( 'fava' );
-const {sha1, sha256, sha384, sha512} = require ( '../dist/node' );
+const {sha1, sha224, sha256, sha384, sha512} = require ( '../dist/node' );
 
 /* MAIN */
 
@@ -29,6 +29,32 @@ describe ( 'Crypto SHA', it => {
 
       t.is ( await sha1 ( input ), output );
       t.is ( await sha1 ( Buffer.from ( input ) ), output );
+
+    }
+
+  });
+
+  it ( 'supports sha224', async t => {
+
+    const tests = [
+      [
+        'The quick brown fox jumps over the lazy dog',
+        '730e109bd7a8a32b1cb9d9a09aa2325d2430587ddbc0c38bad911525'
+      ],
+      [
+        'The quick brown fox jumps over the lazy cog',
+        'fee755f44a55f20fb3362cdc3c493615b3cb574ed95ce610ee5b1e9b'
+      ],
+      [
+        '',
+        'd14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f'
+      ]
+    ];
+
+    for ( const [input, output] of tests ) {
+
+      t.is ( await sha224 ( input ), output );
+      t.is ( await sha224 ( Buffer.from ( input ) ), output );
 
     }
 
