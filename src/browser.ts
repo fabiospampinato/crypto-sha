@@ -5,7 +5,7 @@ import toHex from 'uint8-to-hex';
 
 /* HELPERS */
 
-const makeHash = ( algorithm: 'SHA-1' | 'SHA-224' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
+const makeHash = ( algorithm: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
 
   return async ( buffer: Uint8Array | string ): Promise<string> => {
 
@@ -24,11 +24,10 @@ const makeHash = ( algorithm: 'SHA-1' | 'SHA-224' | 'SHA-256' | 'SHA-384' | 'SHA
 /* MAIN */
 
 const sha1 = makeHash ( 'SHA-1' );
-const sha224 = makeHash ( 'SHA-224' );
 const sha256 = makeHash ( 'SHA-256' );
 const sha384 = makeHash ( 'SHA-384' );
 const sha512 = makeHash ( 'SHA-512' );
 
 /* EXPORT */
 
-export {sha1, sha224, sha256, sha384, sha512};
+export {sha1, sha256, sha384, sha512};
