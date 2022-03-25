@@ -1,7 +1,7 @@
 {
   "name": "crypto-sha",
   "description": "Isomorphic wrapper for the SHA family of hash functions.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/node.js",
   "types": "dist/node.d.ts",
   "exports": {
