@@ -1,6 +1,7 @@
 
 /* IMPORT */
 
+import webcrypto from 'tiny-webcrypto';
 import toHex from 'uint8-to-hex';
 
 /* HELPERS */
@@ -11,7 +12,7 @@ const makeHash = ( algorithm: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
 
     buffer = ( typeof buffer === 'string' ) ? new TextEncoder ().encode ( buffer ) : buffer;
 
-    const arrayBuffer = await crypto.subtle.digest ( algorithm, buffer );
+    const arrayBuffer = await webcrypto.subtle.digest ( algorithm, buffer );
     const uint8 = new Uint8Array ( arrayBuffer );
     const hex = toHex ( uint8 );
 

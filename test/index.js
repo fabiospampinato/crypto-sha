@@ -1,8 +1,8 @@
 
 /* IMPORT */
 
-const {describe} = require ( 'fava' );
-const {sha1, sha256, sha384, sha512} = require ( '../dist/node' );
+import {describe} from 'fava';
+import {sha1, sha256, sha384, sha512} from '../dist/index.js';
 
 /* MAIN */
 
