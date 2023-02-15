@@ -6,11 +6,13 @@ import toHex from 'uint8-to-hex';
 
 /* HELPERS */
 
+const encoder = new TextEncoder ();
+
 const makeHash = ( algorithm: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
 
   return async ( buffer: Uint8Array | string ): Promise<string> => {
 
-    buffer = ( typeof buffer === 'string' ) ? new TextEncoder ().encode ( buffer ) : buffer;
+    buffer = ( typeof buffer === 'string' ) ? encoder.encode ( buffer ) : buffer;
 
     const arrayBuffer = await webcrypto.subtle.digest ( algorithm, buffer );
     const uint8 = new Uint8Array ( arrayBuffer );
