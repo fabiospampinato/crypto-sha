@@ -11,35 +11,43 @@ const INPUT = 'The quick brown fox jumps over the lazy dog';
 /* MAIN */
 
 benchmark.config ({
-  iterations: 100_000
+  iterations: 10_000
 })
 
-benchmark ({
-  name: 'SHA-1',
-  fn: async () => {
-    await sha1 ( INPUT );
-  }
-});
+for ( const format of ['buffer', 'uint8', 'hex'] ) {
 
-benchmark ({
-  name: 'SHA-256',
-  fn: async () => {
-    await sha256 ( INPUT );
-  }
-});
+  benchmark.group ( format, () => {
 
-benchmark ({
-  name: 'SHA-384',
-  fn: async () => {
-    await sha384 ( INPUT );
-  }
-});
+    benchmark ({
+      name: 'SHA-1',
+      fn: async () => {
+        await sha1[format]( INPUT );
+      }
+    });
 
-benchmark ({
-  name: 'SHA-512',
-  fn: async () => {
-    await sha512 ( INPUT );
-  }
-});
+    benchmark ({
+      name: 'SHA-256',
+      fn: async () => {
+        await sha256[format]( INPUT );
+      }
+    });
+
+    benchmark ({
+      name: 'SHA-384',
+      fn: async () => {
+        await sha384[format]( INPUT );
+      }
+    });
+
+    benchmark ({
+      name: 'SHA-512',
+      fn: async () => {
+        await sha512[format]( INPUT );
+      }
+    });
+
+  });
+
+}
 
 benchmark.summary ();

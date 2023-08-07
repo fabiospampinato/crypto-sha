@@ -10,17 +10,31 @@ const encoder = new TextEncoder ();
 
 const makeHash = ( algorithm: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512' ) => {
 
-  return async ( buffer: Uint8Array | string ): Promise<string> => {
+  const buffer = ( input: Uint8Array | string ): Promise<ArrayBuffer> => {
 
-    buffer = ( typeof buffer === 'string' ) ? encoder.encode ( buffer ) : buffer;
+    input = ( typeof input === 'string' ) ? encoder.encode ( input ) : input;
 
-    const arrayBuffer = await webcrypto.subtle.digest ( algorithm, buffer );
-    const uint8 = new Uint8Array ( arrayBuffer );
-    const hex = toHex ( uint8 );
-
-    return hex;
+    return webcrypto.subtle.digest ( algorithm, input );
 
   };
+
+  const uint8 = async ( input: Uint8Array | string ): Promise<Uint8Array> => {
+
+    return new Uint8Array ( await buffer ( input ) );
+
+  };
+
+  const hex = async ( input: Uint8Array | string ): Promise<string> => {
+
+    return toHex ( await uint8 ( input ) );
+
+  };
+
+  hex.buffer = buffer;
+  hex.hex = hex;
+  hex.uint8 = uint8;
+
+  return hex;
 
 };
 
