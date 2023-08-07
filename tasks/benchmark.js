@@ -12,7 +12,7 @@ const INPUT = 'The quick brown fox jumps over the lazy dog';
 
 benchmark.config ({
   iterations: 10_000
-})
+});
 
 for ( const format of ['buffer', 'uint8', 'hex'] ) {
 
