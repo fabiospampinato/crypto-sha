@@ -8,6 +8,8 @@
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "benchmark": "tsex benchmark",
+    "benchmark:watch": "tsex benchmark --watch",
     "clean": "tsex clean",
     "compile": "tsex compile",
     "compile:watch": "tsex compile --watch",
@@ -26,6 +28,7 @@
     "uint8-to-hex": "^2.0.0"
   },
   "devDependencies": {
+    "benchloop": "^2.1.0",
     "fava": "^0.2.1",
     "tsex": "^3.0.1",
     "typescript": "^5.1.6"
