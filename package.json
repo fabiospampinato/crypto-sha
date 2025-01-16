@@ -3,7 +3,7 @@
   "repository": "github:fabiospampinato/crypto-sha",
   "description": "Isomorphic wrapper for the SHA family of hash functions.",
   "license": "MIT",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
